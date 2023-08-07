@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - MWpOfPlayer
+  - RWpOfPlayer
+  - Player
+  - Terrian
+  - 
+  - 
+  - Boom Explosion
+  - Boss
+  - BossSkill
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Background
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3866775691
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BossSkill
+    uniqueID: 3336972567
+    locked: 0
+  - name: Player
+    uniqueID: 1284465859
+    locked: 0
+  - name: MWpOfPlayer
+    uniqueID: 2766619719
+    locked: 0
+  - name: RWpOfPlayer
+    uniqueID: 3530799395
+    locked: 0
+  - name: Boss
+    uniqueID: 2057048471
+    locked: 0
+  - name: Terrian
+    uniqueID: 2934021227
+    locked: 0
+  - name: Boom Explosion
+    uniqueID: 1291466845
+    locked: 0
+  - name: UI
+    uniqueID: 150510935
+    locked: 0
