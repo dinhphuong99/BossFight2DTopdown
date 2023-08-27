@@ -35,11 +35,11 @@ public class RollSkill : MonoBehaviour
     {
         if (isRoll)
         {
-            player.GetComponent<PlayerLife>().SetIsmortal(true);
+            player.GetComponent<LifeWithRevival>().SetImmortal(false);
         }
         else
         {
-            player.GetComponent<PlayerLife>().SetIsmortal(false);
+            player.GetComponent<LifeWithRevival>().SetImmortal(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Z) && rollTimer <= 0 && !isCooldown)

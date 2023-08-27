@@ -8,7 +8,7 @@ using TMPro;
 public class HPProcess : MonoBehaviour
 {
     [SerializeField] private new GameObject gameObject;
-    private PlayerLife playerLife;
+    private LifeWithRevival playerLife;
     private Life life;
     private float currentValue;
     private float maxValue;
@@ -17,7 +17,7 @@ public class HPProcess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerLife = gameObject.GetComponent<PlayerLife>();
+        playerLife = gameObject.GetComponent<LifeWithRevival>();
         life = gameObject.GetComponent<Life>();
         if (playerLife != null)
         {

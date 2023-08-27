@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,23 +6,10 @@ using UnityEngine.SceneManagement;
 public class Life : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    protected TimeDeltaTime timeDelta;
-    protected TimerRealTime timerReal;
     [SerializeField] protected float maxHealth = 100;
     [SerializeField] protected float currentHealth;
-    protected bool isInvulnerable = false;
-    [SerializeField] protected GameObject objectTakeDamage;
-    protected bool isImortal = false;
+    [SerializeField] protected GameObject damageEffect;
 
-    public bool GetIsmortal()
-    {
-        return this.isImortal;
-    }
-
-    public void SetIsmortal(bool isImortal)
-    {
-        this.isImortal = isImortal;
-    }
     public bool isDead { get; set; }
 
     // Start is called before the first frame update
@@ -30,54 +17,27 @@ public class Life : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        isInvulnerable = false;
         this.isDead = false;
-        timeDelta = GetComponent<TimeDeltaTime>();
-        timeDelta.isRun = false;
-        timeDelta.time = 0.25f;
-
-        timerReal = GetComponent<TimerRealTime>();
-        timerReal.isRun = false;
-        timerReal.time = 4f;
+        damageEffect.SetActive(false);
     }
 
-    private void Update()
+    public virtual void TakeDamage(float damage)
     {
-        isInvulnerable = timeDelta.isRun;
-
-        if (isInvulnerable || isImortal)
+        currentHealth = currentHealth - damage;
+        if (currentHealth <= 0)
         {
-            if (!objectTakeDamage.activeSelf)
-            {
-                objectTakeDamage.SetActive(true);
-            }
+            Die();
         }
         else
         {
-            objectTakeDamage.SetActive(false);
-        }
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (!isInvulnerable && !isImortal)
-        {
-            currentHealth = currentHealth - damage;
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-            else
-            {
-                timeDelta.isRun = true;
-                timerReal.isRun = true;
-            }
+            damageEffect.SetActive(true);
+            damageEffect.GetComponent<LifeTimeDeactive>().ResetLifeTimer();
         }
     }
 
     private void Die()
     {
-        objectTakeDamage.SetActive(false);
+        damageEffect.SetActive(false);
         rb.bodyType = RigidbodyType2D.Static;
         this.isDead = true;
         Invoke("Disable", 0.5f);

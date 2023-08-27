@@ -21,7 +21,7 @@ TagManager:
   - Boom Explosion
   - Boss
   - BossSkill
-  - 
+  - DamageEffect
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: BossSkill
     uniqueID: 3336972567
+    locked: 0
+  - name: DamageEffect
+    uniqueID: 3749396617
     locked: 0
   - name: Player
     uniqueID: 1284465859

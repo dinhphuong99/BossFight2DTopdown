@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1284465859
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 8848993070067138329, guid: 30edb9d12883df642bcb8b4f9bb0c3da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -169,6 +169,7 @@ MonoBehaviour:
   pieces: []
   timeDestroy: 2
   tagTakeDamage: Player
+  blockByTerrian: 1
 --- !u!114 &5122649450989143206
 MonoBehaviour:
   m_ObjectHideFlags: 0

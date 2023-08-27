@@ -6,7 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
     private PlayerMovement playerMovement;
-    private PlayerLife playerLife;
+    private LifeWithRevival playerLife;
     private RollSkill rollSkill;
     [SerializeField] private GameObject character;
     private bool isRoll = false;
@@ -21,7 +21,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim = character.GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        playerLife = GetComponent<PlayerLife>();
+        playerLife = GetComponent<LifeWithRevival>();
         rollSkill = GetComponent<RollSkill>();
     }
 

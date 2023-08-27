@@ -4,39 +4,15 @@ using UnityEngine;
 
 public class SwordSendDamage : MonoBehaviour
 {
-    [SerializeField] private GameObject GameObjectTakeDamage;
-    private bool isTouch = false;
+    [SerializeField] private GameObject objectTakeDamage;
     [SerializeField] private float damage = 10f;
     private Life life;
-    private PlayerLife playerLife;
-    private bool isSent = true;
-
-    // Start is called before the first frame update
-    void Start()
+    private LifeWithRevival lifeWithRevival;
+    [SerializeField] private bool isSent = true;
+    private List<GameObject> damageReceivers = new List<GameObject>();
+    private void Start()
     {
-        this.isSent = true;
-        life = GameObjectTakeDamage.GetComponent<Life>();
-        playerLife = GameObjectTakeDamage.GetComponent<PlayerLife>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        isTouch = GetComponent<DetectionCollider>().isTouch;
-
-        if (isTouch && !isSent)
-        {
-            if (life != null)
-            {
-                life.TakeDamage(damage);
-                this.isSent = true;
-            }
-            else if (playerLife != null)
-            {
-                playerLife.TakeDamage(damage);
-                this.isSent = true;
-            }
-        }
     }
 
     public void SetFalse2IsSent()
@@ -47,5 +23,72 @@ public class SwordSendDamage : MonoBehaviour
     public void SetTrue2IsSent()
     {
         this.isSent = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(objectTakeDamage.tag))
+        {
+            if (!damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Add(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(objectTakeDamage.tag))
+        {
+            if (damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Remove(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(objectTakeDamage.tag))
+        {
+            if (!damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Add(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(objectTakeDamage.tag))
+        {
+            if (damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Remove(collision.gameObject);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (!isSent)
+        {
+            foreach (GameObject obj in damageReceivers)
+            {
+                life = obj.GetComponent<Life>();
+                lifeWithRevival = obj.GetComponent<LifeWithRevival>();
+
+                if (life != null)
+                {
+                    life.TakeDamage(damage);
+                }
+                else if (lifeWithRevival != null)
+                {
+                    lifeWithRevival.TakeDamage(damage);
+                }
+            }
+
+            isSent = true;
+        }
     }
 }

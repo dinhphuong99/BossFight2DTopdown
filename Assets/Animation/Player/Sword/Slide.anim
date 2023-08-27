@@ -109,7 +109,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.23333333
+  - time: 0.21666667
     functionName: SetFalse2IsSent
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -123,7 +123,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.36666667
+  - time: 0.4
     functionName: SetEnd
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -7,7 +7,7 @@ public class SendDamageOnce : MonoBehaviour
     [SerializeField] private string tagTakeDamage;
     [SerializeField] private float damage = 10f;
     private Life life;
-    private PlayerLife playerLife;
+    private LifeWithRevival playerLife;
     private bool isSent = true;
 
     // Start is called before the first frame update
@@ -29,7 +29,7 @@ public class SendDamageOnce : MonoBehaviour
         if (collision.gameObject.CompareTag(tagTakeDamage) && !this.isSent)
         {
             life = collision.gameObject.GetComponent<Life>();
-            playerLife = collision.gameObject.GetComponent<PlayerLife>();
+            playerLife = collision.gameObject.GetComponent<LifeWithRevival>();
 
             if (life != null)
             {

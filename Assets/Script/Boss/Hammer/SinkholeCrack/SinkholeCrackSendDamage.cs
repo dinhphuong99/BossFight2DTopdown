@@ -1,63 +1,110 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SinkholeCrackSendDamage : MonoBehaviour
 {
     [SerializeField] private string tagTakeDamage;
-    public float damage = 10f;
+    [SerializeField] private float damage = 10f;
     private Life life;
-    private PlayerLife playerLife;
-    public bool canSend = true;
+    private LifeWithRevival lifeWithRevival;
+    [SerializeField] private bool isSent = false;
+    private List<GameObject> damageReceivers = new List<GameObject>();
+    [SerializeField] private float sendTime = 4f;
+    private float sendTimer = 0f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        canSend = true;
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetFalse2IsSent()
     {
-        if (collision.gameObject.CompareTag(tagTakeDamage) && canSend)
-        {
-            life = collision.gameObject.GetComponent<Life>();
-            playerLife = collision.gameObject.GetComponent<PlayerLife>();
+        this.isSent = false;
+    }
 
-            if (life != null)
-            {
-                life.TakeDamage(damage);
-                canSend = false;
-            }
-            else if (playerLife != null)
-            {
-                playerLife.TakeDamage(damage);
-                canSend = false;
-            }
-        }
+    public void SetTrue2IsSent()
+    {
+        this.isSent = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(tagTakeDamage) && canSend)
+        if (collision.gameObject.CompareTag(tagTakeDamage))
         {
-            life = collision.gameObject.GetComponent<Life>();
-            playerLife = collision.gameObject.GetComponent<PlayerLife>();
-
-            if (collision.gameObject.CompareTag(tagTakeDamage) && canSend)
+            if (!damageReceivers.Contains(collision.gameObject))
             {
-                life = collision.gameObject.GetComponent<Life>();
-                playerLife = collision.gameObject.GetComponent<PlayerLife>();
+                damageReceivers.Add(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(tagTakeDamage))
+        {
+            if (damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Remove(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(tagTakeDamage))
+        {
+            if (!damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Add(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(tagTakeDamage))
+        {
+            if (damageReceivers.Contains(collision.gameObject))
+            {
+                damageReceivers.Remove(collision.gameObject);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        sendTimer += Time.unscaledDeltaTime;
+        if (sendTimer >= sendTime)
+        {
+            isSent = true;
+        }
+
+        if (!isSent && damageReceivers.Any())
+        {
+            List<GameObject> objectsToRemove = new List<GameObject>(); // Danh sách tạm thời
+
+            foreach (GameObject obj in damageReceivers)
+            {
+                life = obj.GetComponent<Life>();
+                lifeWithRevival = obj.GetComponent<LifeWithRevival>();
 
                 if (life != null)
                 {
                     life.TakeDamage(damage);
-                    canSend = false;
                 }
-                else if (playerLife != null)
+                else if (lifeWithRevival != null)
                 {
-                    playerLife.TakeDamage(damage);
-                    canSend = false;
+                    lifeWithRevival.TakeDamage(damage);
                 }
+
+                objectsToRemove.Add(obj); // Thêm vào danh sách tạm thời
+            }
+
+            foreach (GameObject obj in objectsToRemove)
+            {
+                damageReceivers.Remove(obj); // Loại bỏ khỏi danh sách chính
             }
         }
     }

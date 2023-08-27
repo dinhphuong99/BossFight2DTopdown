@@ -10,6 +10,5 @@ public class SpawnSinkhole : MonoBehaviour
     public void SpawnSinkholeCrack()
     {
         var sinkholeCrack = Instantiate(sinkholeCrackPrefab, spawnPoint.position, spawnPoint.rotation);
-        sinkholeCrack.GetComponent<SinkholeCrackSendDamage>().canSend = false;
     }
 }

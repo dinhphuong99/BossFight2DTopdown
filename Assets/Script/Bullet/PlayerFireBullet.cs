@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class PlayerFireBullet : FireBullet
 {
-    protected PlayerLife playerLife;
+    protected LifeWithRevival playerLife;
     [SerializeField] private float eneryPerBullet = 10f;
 
     protected override void Start()
     {
         rotateWeapon = GetComponent<RotateWeapon>();
         bulletDirect = rotateWeapon.LookDirection;
-        playerLife = this.transform.parent.gameObject.GetComponent<PlayerLife>();
+        playerLife = this.transform.parent.gameObject.GetComponent<LifeWithRevival>();
         isCooldown = false;
     }
 

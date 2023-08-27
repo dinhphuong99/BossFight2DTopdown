@@ -9,12 +9,12 @@ public class SkillSycthe : MonoBehaviour
     [SerializeField] protected float speed = 3f;
     [SerializeField] protected Vector2 bulletDirect;
 
-    private void OnEnable()
-    {
-        SpawnBullet();
-    }
+    //private void OnEnable()
+    //{
+    //    SpawnBullet();
+    //}
 
-    protected virtual void SpawnBullet()
+    public virtual void SpawnBullet()
     {
         var bullet = Instantiate(skillPrefab, spawnPoint.position, spawnPoint.rotation);
         var rb = bullet.GetComponent<Rigidbody2D>();

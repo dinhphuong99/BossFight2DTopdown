@@ -6,7 +6,7 @@ public class SinkholeSendDamage : MonoBehaviour
 {
     [SerializeField] private float damage = 15f;
     private Life life;
-    private PlayerLife playerLife;
+    private LifeWithRevival playerLife;
     [SerializeField] private GameObject GameObjectTakeDamage;
     [SerializeField] private GameObject hammer;
     private bool isTouchHammerCollider = false;

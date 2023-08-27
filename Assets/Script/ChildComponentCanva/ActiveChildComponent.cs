@@ -7,13 +7,13 @@ public class ActiveChildComponent : MonoBehaviour
     [SerializeField] private GameObject [] childComponents;
     [SerializeField] private GameObject GameObject;
     private Life life;
-    private PlayerLife playerLife;
+    private LifeWithRevival playerLife;
     private float currentHealth;
     // Start is called before the first frame update
     void Start()
     {
         life = GameObject.GetComponent<Life>();
-        playerLife = GameObject.GetComponent<PlayerLife>();
+        playerLife = GameObject.GetComponent<LifeWithRevival>();
     }
 
     // Update is called once per frame

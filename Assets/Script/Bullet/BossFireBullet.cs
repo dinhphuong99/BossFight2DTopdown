@@ -33,8 +33,8 @@ public class BossFireBullet : FireBullet
                 isCooldown = true;
             }
         }
-
-        if (isAuto || (Input.GetMouseButton(0) && !isCooldown))
+        // || (Input.GetMouseButton(0) && !isCooldown)
+        if (isAuto)
         {
             BulletLaunch();
         }
