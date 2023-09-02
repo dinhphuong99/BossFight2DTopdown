@@ -1,18 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class SwordSendDamage : MonoBehaviour
+public class SwordSendDamage : SendDamageMultipleTarget
 {
-    [SerializeField] private GameObject objectTakeDamage;
-    [SerializeField] private float damage = 10f;
-    private Life life;
-    private LifeWithRevival lifeWithRevival;
-    [SerializeField] private bool isSent = true;
-    private List<GameObject> damageReceivers = new List<GameObject>();
+    bool shouldAddToList = true; // Biến cờ mặc định là true
+    bool findInList = false; // Biến cờ mặc định là false
+    private List<GameObject> ListUnsentDamage = new List<GameObject>();
     private void Start()
     {
-
+        this.isSent = true;
+        //ListUnsentDamage.Clear();
+        ListIdSentDamage.Clear();
     }
 
     public void SetFalse2IsSent()
@@ -23,72 +23,115 @@ public class SwordSendDamage : MonoBehaviour
     public void SetTrue2IsSent()
     {
         this.isSent = true;
+        //ListUnsentDamage.Clear();
+        ListIdSentDamage.Clear();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(objectTakeDamage.tag))
+        if (collision.gameObject.CompareTag(tagTakeDamage))
         {
-            if (!damageReceivers.Contains(collision.gameObject))
+            foreach (GameObject gameObject in ListUnsentDamage)
             {
-                damageReceivers.Add(collision.gameObject);
+                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
+                {
+                    shouldAddToList = false; // Nếu có trùng Instant ID, đặt biến cờ thành false và thoát khỏi vòng lặp
+                    break;
+                }
+            }
+
+            if (shouldAddToList)
+            {
+                ListUnsentDamage.Add(collision.gameObject);
+            }
+        }
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(tagTakeDamage))
+        {
+            foreach (GameObject gameObject in ListUnsentDamage)
+            {
+                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
+                {
+                    shouldAddToList = false; // Nếu có trùng Instant ID, đặt biến cờ thành false và thoát khỏi vòng lặp
+                    break;
+                }
+            }
+
+            if (shouldAddToList)
+            {
+                ListUnsentDamage.Add(collision.gameObject);
             }
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(objectTakeDamage.tag))
+        if (collision.gameObject.CompareTag(tagTakeDamage) && isSent)
         {
-            if (damageReceivers.Contains(collision.gameObject))
+            foreach (GameObject gameObject in ListUnsentDamage)
             {
-                damageReceivers.Remove(collision.gameObject);
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag(objectTakeDamage.tag))
-        {
-            if (!damageReceivers.Contains(collision.gameObject))
-            {
-                damageReceivers.Add(collision.gameObject);
+                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
+                {
+                    ListUnsentDamage.Remove(gameObject);
+                    break;
+                }
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag(objectTakeDamage.tag))
+        if (collision.gameObject.CompareTag(tagTakeDamage) && isSent)
         {
-            if (damageReceivers.Contains(collision.gameObject))
+            foreach (GameObject gameObject in ListUnsentDamage)
             {
-                damageReceivers.Remove(collision.gameObject);
+                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
+                {
+                    ListUnsentDamage.Remove(gameObject);
+                    break;
+                }
             }
         }
     }
 
     private void Update()
     {
+
         if (!isSent)
         {
-            foreach (GameObject obj in damageReceivers)
-            {
-                life = obj.GetComponent<Life>();
-                lifeWithRevival = obj.GetComponent<LifeWithRevival>();
 
-                if (life != null)
+            foreach (GameObject gameObject in ListUnsentDamage)
+            {
+                findInList = false;
+
+                foreach (int id in ListIdSentDamage)
                 {
-                    life.TakeDamage(damage);
+                    if (id == gameObject.GetInstanceID())
+                    {
+                        findInList = true;
+                        break;
+                    }
                 }
-                else if (lifeWithRevival != null)
+
+                if (!findInList)
                 {
-                    lifeWithRevival.TakeDamage(damage);
+                    life = gameObject.GetComponent<Life>();
+                    lifeWithRevival = gameObject.GetComponent<LifeWithRevival>();
+                    
+                    if (life != null)
+                    {
+                        life.TakeDamage(damage);
+                    }
+                    else if (lifeWithRevival != null)
+                    {
+                        lifeWithRevival.TakeDamage(damage);
+                    }
+                    ListIdSentDamage.Add(gameObject.GetInstanceID());
                 }
             }
-
-            isSent = true;
         }
     }
 }

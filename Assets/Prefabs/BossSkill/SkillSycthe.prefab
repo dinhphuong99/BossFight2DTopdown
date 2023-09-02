@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3497302544963629996}
   - component: {fileID: 3497302544963629997}
-  - component: {fileID: 3497302544963629999}
   - component: {fileID: 3497302544963629987}
   - component: {fileID: 3497302544963629986}
-  - component: {fileID: 378201254702761179}
   - component: {fileID: 5884227995626934573}
+  - component: {fileID: 228709003703275435}
   m_Layer: 14
   m_Name: SkillSycthe
   m_TagString: Untagged
@@ -89,20 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3497302544963629999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3497302544963629992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58da8718a429d447a1f12f17cf10c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagTakeDamage: Player
-  damage: 15
 --- !u!114 &3497302544963629987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a6c5996658e2a408656a736c9c13d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 12
+  lifeTime: 5
 --- !u!50 &3497302544963629986
 Rigidbody2D:
   serializedVersion: 4
@@ -137,22 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &378201254702761179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3497302544963629992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1274a85b747557f4385b57a49f1291b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pieces: []
-  timeDestroy: 0
-  tagTakeDamage: Player
-  blockByTerrian: 0
 --- !u!60 &5884227995626934573
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -260,3 +229,19 @@ PolygonCollider2D:
       - {x: -1.6943518, y: -0.39644703}
       - {x: -1.5398202, y: -0.15435515}
       - {x: -1.3711522, y: 0.056334183}
+--- !u!114 &228709003703275435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497302544963629992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe9c429ea2ae3a48836ea5070fe8547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagTakeDamage: Player
+  damage: 15
+  isSent: 0
+  sendTime: 5
