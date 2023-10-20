@@ -456,21 +456,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pixel Adventure is a game developed by Nguyen Dinh Phuong and completed
-    on May 24, 2023.
-
-    A big thank you to the authors who developed the following
-    assets:
-
-    - Pixel Adventure Asset Pack 1 & 2 by Pixel Frog.
-
-    - Pixel Buttons
-    Set by egordorichev.
-
-    - Pixel art heart by Doffdog .
-
-    ... and other authors
-    have contributed greatly to the completion of this game.'
+  m_text: "Boss Fight TD  is a game developed by Nguyen Dinh Phuong and completed
+    on October 21, 2023.\nA big thank you to the authors who developed the following
+    assets:\n- Pixel Adventure Asset Pack 1 & 2 by Pixel Frog.\n- 2D Character -
+    Astronaut by COPYSPRIGHT.\n- Casual Game BGM #5 by B.G.M.\n- FREE Casual Game
+    SFX Pack by Dustyroom\r.\n- Coffee Chill Out by RomanBelov .\n... and other authors
+    have contributed greatly to the completion of this game."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
