@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Wall
+  - Border
   layers:
   - Default
   - TransparentFX
@@ -16,16 +18,16 @@ TagManager:
   - RWpOfPlayer
   - Player
   - Terrian
-  - 
+  - Border
   - 
   - Boom Explosion
   - Boss
   - BossSkill
   - DamageEffect
   - 
+  - Enemy Fly
   - 
-  - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -44,6 +46,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1133386783
     locked: 0
   - name: BossSkill
     uniqueID: 3336972567
@@ -66,8 +71,14 @@ TagManager:
   - name: Terrian
     uniqueID: 2934021227
     locked: 0
+  - name: Border
+    uniqueID: 504187037
+    locked: 0
   - name: Boom Explosion
     uniqueID: 1291466845
+    locked: 0
+  - name: Enemy Fly
+    uniqueID: 1528000635
     locked: 0
   - name: UI
     uniqueID: 150510935

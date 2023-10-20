@@ -7,6 +7,11 @@ public class SwapWeapon : MonoBehaviour
     [SerializeField] private GameObject []weapons;
     private int pPosition = 0;
 
+    public int GetpPosition()
+    {
+        return this.pPosition;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

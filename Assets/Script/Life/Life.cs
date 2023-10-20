@@ -35,12 +35,21 @@ public class Life : MonoBehaviour
         }
     }
 
+    public void IncreaseHealth(float health)
+    {
+        currentHealth = currentHealth + health;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
     private void Die()
     {
         damageEffect.SetActive(false);
         rb.bodyType = RigidbodyType2D.Static;
         this.isDead = true;
-        Invoke("Disable", 0.5f);
+        Invoke("Disable", 1.5f);
     }
 
     public float GetCurrentHealth()

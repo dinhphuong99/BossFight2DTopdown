@@ -10,7 +10,7 @@ public class LifeWithRevival : Life
     private bool immortalAfterRevival = false; //nếu true thì không nhận sát thương
     private bool immortal = false;//nếu true thì không nhận sát thương
     [SerializeField] private float currentEnergy;
-    [SerializeField] private float immortalTime = 6.0f;
+    [SerializeField] private float immortalTime = 3.0f;
     private float immortalTimer = 0f;
 
     public void SetImmortal(bool immortal)
