@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3497302544963629987}
   - component: {fileID: 3497302544963629986}
   - component: {fileID: 5884227995626934573}
-  - component: {fileID: 228709003703275435}
+  - component: {fileID: 3904148976698537588}
   m_Layer: 14
   m_Name: SkillSycthe
   m_TagString: Untagged
@@ -229,7 +229,7 @@ PolygonCollider2D:
       - {x: -1.6943518, y: -0.39644703}
       - {x: -1.5398202, y: -0.15435515}
       - {x: -1.3711522, y: 0.056334183}
---- !u!114 &228709003703275435
+--- !u!114 &3904148976698537588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,10 +238,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3497302544963629992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe9c429ea2ae3a48836ea5070fe8547, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e7a9ec2ff2d517498a3ee7f9bfddf39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tagTakeDamage: Player
-  damage: 15
-  isSent: 0
-  sendTime: 5
+  damage: 10

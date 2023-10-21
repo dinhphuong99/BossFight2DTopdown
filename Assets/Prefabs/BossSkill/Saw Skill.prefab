@@ -106,11 +106,11 @@ GameObject:
   - component: {fileID: 2611097194190002028}
   - component: {fileID: 1264162649356951573}
   - component: {fileID: 2611097194190002045}
-  - component: {fileID: 2611097194190002044}
-  - component: {fileID: 2611097194190002016}
   - component: {fileID: 2611097194190002015}
   - component: {fileID: 2611097194190002014}
   - component: {fileID: 2611097194190002017}
+  - component: {fileID: 3033053817508773059}
+  - component: {fileID: 5822532599968838001}
   m_Layer: 14
   m_Name: Saw
   m_TagString: Untagged
@@ -238,35 +238,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2611097194190002044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2611097194190002022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a54a73840604040b970a5f81f3a791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
---- !u!114 &2611097194190002016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2611097194190002022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe9c429ea2ae3a48836ea5070fe8547, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagTakeDamage: Player
-  damage: 10
-  isSent: 0
-  sendTime: 100
 --- !u!114 &2611097194190002015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,3 +322,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 1661287225744979501}
+--- !u!114 &3033053817508773059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611097194190002022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0aa50ca0c6911846954e016b5d411e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 9
+--- !u!114 &5822532599968838001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611097194190002022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7a9ec2ff2d517498a3ee7f9bfddf39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagTakeDamage: Player
+  damage: 15

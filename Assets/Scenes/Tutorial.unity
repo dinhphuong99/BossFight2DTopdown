@@ -43399,11 +43399,11 @@ GameObject:
   - component: {fileID: 1522117529}
   - component: {fileID: 1522117528}
   - component: {fileID: 1522117527}
-  - component: {fileID: 1522117526}
   - component: {fileID: 1522117525}
   - component: {fileID: 1522117524}
-  - component: {fileID: 1522117523}
   - component: {fileID: 1522117522}
+  - component: {fileID: 1522117530}
+  - component: {fileID: 1522117531}
   m_Layer: 6
   m_Name: Melee Weapon
   m_TagString: Untagged
@@ -43439,18 +43439,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1522117520}
---- !u!114 &1522117523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522117520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b095b2024be334098f2116ad394897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &1522117524
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -43518,21 +43506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311513bc312e01f479b76d667e59ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1522117526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522117520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ab27694adffd0643ad13e25b715f38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagTakeDamage: Enemy
-  damage: 10
-  isSent: 0
 --- !u!114 &1522117527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43617,6 +43590,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1522117530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522117520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c397c24543a5845add9fc3f1648e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1522117531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522117520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e239d319183dd64f8da812952a563f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagTakeDamage: Enemy
+  damage: 10
+  isSent: 0
 --- !u!1 &1525103835
 GameObject:
   m_ObjectHideFlags: 0
@@ -43996,7 +43996,9 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 375308072}
   ortherCanvas: {fileID: 1097786632}
   objectSetDeath: {fileID: 1881883304}
+  objectSetVictory: {fileID: 0}
   resume: {fileID: 1858389919}
+  statusText: {fileID: 0}
 --- !u!1 &1622193755
 GameObject:
   m_ObjectHideFlags: 0
