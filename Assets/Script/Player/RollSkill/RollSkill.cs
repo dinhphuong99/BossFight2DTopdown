@@ -58,12 +58,18 @@ public class RollSkill : MonoBehaviour
         }
         else
         {
-            rollTimer -= Time.unscaledDeltaTime;
+            if (Time.timeScale != 0f)
+            {
+                rollTimer -= Time.unscaledDeltaTime;
+            }
         }
 
         if (isCooldown)
         {
-            cooldownTimer -= Time.unscaledDeltaTime;
+            if (Time.timeScale != 0f)
+            {
+                cooldownTimer -= Time.unscaledDeltaTime;
+            }
 
             if (cooldownTimer <= 0)
             {

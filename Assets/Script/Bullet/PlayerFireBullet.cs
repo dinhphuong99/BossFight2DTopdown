@@ -19,7 +19,10 @@ public class PlayerFireBullet : FireBullet
 
         if (isCooldown)
         {
-            fireTimer += Time.unscaledDeltaTime;
+            if (Time.timeScale != 0f)
+            {
+                fireTimer += Time.unscaledDeltaTime;
+            }
 
             if (fireTimer >= fireTime)
             {

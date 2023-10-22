@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7988235284037662723}
   - component: {fileID: 7988235284037662722}
-  - component: {fileID: 7988235284037662721}
   - component: {fileID: 7988235284037662725}
+  - component: {fileID: 804758726528125640}
   m_Layer: 17
   m_Name: Detech
   m_TagString: Untagged
@@ -50,19 +50,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
---- !u!114 &7988235284037662721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7988235284037662724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4c0b7ee4467f1d49952dfdfb4e92830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagTakeDamage: Player
 --- !u!114 &7988235284037662725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +60,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7af4c07967b626045a6a853afe481a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagTakeDamage: Player
+--- !u!114 &804758726528125640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988235284037662724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b1e5c4f1fddbb4aa1224479b95a4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tagTakeDamage: Player

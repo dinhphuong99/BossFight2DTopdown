@@ -20,7 +20,10 @@ public class RotateWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rotate();
+        if (Time.timeScale != 0f)
+        {
+            Rotate();
+        }
     }
 
     public void Rotate()

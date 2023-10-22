@@ -59,9 +59,15 @@ public class QueueBehavier : MonoBehaviour
 
         objectResetActiveLastFrame = isObjectResetActive;
 
-        delayTimer += Time.unscaledDeltaTime;
+        if (Time.timeScale != 0f)
+        {
+            delayTimer += Time.unscaledDeltaTime;
+        }
         ActiveObject();
-        activeTimer += Time.unscaledDeltaTime;
+        if (Time.timeScale != 0f)
+        {
+            activeTimer += Time.unscaledDeltaTime;
+        }
     }
 
     [Obsolete]

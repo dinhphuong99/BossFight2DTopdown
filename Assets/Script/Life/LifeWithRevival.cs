@@ -36,7 +36,10 @@ public class LifeWithRevival : Life
     {
         if (immortalAfterRevival)
         {
-            immortalTimer += Time.unscaledDeltaTime;
+            if (Time.timeScale != 0f)
+            {
+                immortalTimer += Time.unscaledDeltaTime;
+            }
 
             if (immortalTimer >= immortalTime)
             {

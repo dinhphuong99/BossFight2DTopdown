@@ -10,7 +10,11 @@ public class SinkholeCrackSendDamage : SendDamageMultipleTarget
 
     private void Update()
     {
-        sendTimer += Time.unscaledDeltaTime;
+        if (Time.timeScale != 0f)
+        {
+            sendTimer += Time.unscaledDeltaTime;
+        }
+        
         if (sendTimer >= sendTime)
         {
             isSent = true;

@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Arena Boss.unity
-    guid: f83e2b40d3a5ad34d90dcf68d6807eed
-  - enabled: 1
-    path: Assets/Scenes/Credit.unity
-    guid: a5552e1a5462e5d48a54be8824c04833
-  - enabled: 1
-    path: Assets/Scenes/End Scenes.unity
-    guid: db899773684eca9498e8089df72601c7
-  - enabled: 1
-    path: Assets/Scenes/Setting.unity
-    guid: 00959d19bc0f5674da61c63b1422695e
-  - enabled: 1
     path: Assets/Scenes/Start Scenes.unity
     guid: 1d091fe33bbcfc24bbc2dcaf80370769
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 2a38656554ebfb7469e60a8603be941d
+  - enabled: 1
+    path: Assets/Scenes/Setting.unity
+    guid: 00959d19bc0f5674da61c63b1422695e
+  - enabled: 1
+    path: Assets/Scenes/Arena Boss.unity
+    guid: f83e2b40d3a5ad34d90dcf68d6807eed
+  - enabled: 1
+    path: Assets/Scenes/End Scenes.unity
+    guid: db899773684eca9498e8089df72601c7
+  - enabled: 1
+    path: Assets/Scenes/Credit.unity
+    guid: a5552e1a5462e5d48a54be8824c04833
   m_configObjects: {}

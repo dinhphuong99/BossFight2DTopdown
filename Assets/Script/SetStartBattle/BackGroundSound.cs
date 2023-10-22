@@ -6,6 +6,7 @@ public class BackGroundSound : MonoBehaviour
 {
     [SerializeField] private AudioSource beforeCombatSound;
     [SerializeField] private AudioSource whileCombatSound;
+    private float startCombat = -1f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +17,19 @@ public class BackGroundSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.GetInt("startBattle") <= 0)
+        if(startCombat != PlayerPrefs.GetInt("startBattle"))
         {
-            whileCombatSound.Play();
-            beforeCombatSound.Pause();
-        }
-        else
-        {
-            beforeCombatSound.Play();
-            whileCombatSound.Pause();
+            startCombat = PlayerPrefs.GetInt("startBattle");
+            if (startCombat > 0)
+            {
+                beforeCombatSound.Play();
+                whileCombatSound.Pause();
+            }
+            else
+            {
+                whileCombatSound.Play();
+                beforeCombatSound.Pause();
+            }
         }
     }
 }

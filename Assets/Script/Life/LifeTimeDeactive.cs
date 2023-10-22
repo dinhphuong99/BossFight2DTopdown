@@ -11,7 +11,10 @@ public class LifeTimeDeactive : MonoBehaviour
     [Obsolete]
     private void Update()
     {
-        lifeTimer += Time.unscaledDeltaTime;
+        if (Time.timeScale != 0f)
+        {
+            lifeTimer += Time.unscaledDeltaTime;
+        }
         if (lifeTimer >= lifeTime)
         {
             this.transform.gameObject.SetActive(false);

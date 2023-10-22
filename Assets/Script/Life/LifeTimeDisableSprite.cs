@@ -11,7 +11,11 @@ public class LifeTimeDisableSprite : MonoBehaviour
     [Obsolete]
     private void Update()
     {
-        lifeTimer += Time.unscaledDeltaTime;
+        if (Time.timeScale != 0f)
+        {
+            lifeTimer += Time.unscaledDeltaTime;
+        }
+
         if (lifeTimer >= lifeTime)
         {
             this.transform.gameObject.GetComponent<SpriteRenderer>().enabled = false;

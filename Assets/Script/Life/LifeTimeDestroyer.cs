@@ -11,7 +11,11 @@ public class LifeTimeDestroyer : MonoBehaviour
     [Obsolete]
     private void Update()
     {
-        lifeTimer += Time.unscaledDeltaTime;
+        if (Time.timeScale != 0f)
+        {
+            lifeTimer += Time.unscaledDeltaTime;
+        }
+
         if (lifeTimer >= lifeTime)
         {
             DestroyObject(this.transform.gameObject);

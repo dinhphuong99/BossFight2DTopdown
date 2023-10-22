@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class SwordSendDamage : SendDamageMultipleTarget
 {
-    bool shouldAddToList = true; // Biến cờ mặc định là true
-    bool findInList = false; // Biến cờ mặc định là false
-    private List<GameObject> ListUnsentDamage = new List<GameObject>();
+    private List<GameObjectCanSent> ListObjectSentDamage = new List<GameObjectCanSent>();
+
+    class GameObjectCanSent
+    {
+        public GameObject obj;
+        public bool isSent;
+    }
+
     private void Start()
     {
         this.isSent = true;
-        ListUnsentDamage.Clear();
-        ListIdSentDamage.Clear();
+        ListObjectSentDamage.Clear();
     }
 
     public void SetFalse2IsSent()
@@ -23,25 +27,23 @@ public class SwordSendDamage : SendDamageMultipleTarget
     public void SetTrue2IsSent()
     {
         this.isSent = true;
-        ListIdSentDamage.Clear();
+        for (int i = 0; i < ListObjectSentDamage.Count; i++)
+        {
+            ListObjectSentDamage[i].isSent = false;
+        }
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(tagTakeDamage))
         {
-            foreach (GameObject gameObject in ListUnsentDamage)
+            if (!(CheckObjectInList(collision.gameObject) > -1))
             {
-                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
-                {
-                    shouldAddToList = false;
-                    break;
-                }
-            }
+                GameObjectCanSent gameObjectCanSent = new GameObjectCanSent();
+                gameObjectCanSent.obj = collision.gameObject;
+                gameObjectCanSent.isSent = false;
 
-            if (shouldAddToList)
-            {
-                ListUnsentDamage.Add(collision.gameObject);
+                ListObjectSentDamage.Add(gameObjectCanSent);
             }
         }
     }
@@ -50,50 +52,35 @@ public class SwordSendDamage : SendDamageMultipleTarget
     {
         if (collision.gameObject.CompareTag(tagTakeDamage))
         {
-            foreach (GameObject gameObject in ListUnsentDamage)
+            if (!(CheckObjectInList(collision.gameObject) > -1))
             {
-                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
-                {
-                    shouldAddToList = false;
-                    break;
-                }
-            }
+                GameObjectCanSent gameObjectCanSent = new GameObjectCanSent();
+                gameObjectCanSent.obj = collision.gameObject;
+                gameObjectCanSent.isSent = false;
 
-            if (shouldAddToList)
-            {
-                ListUnsentDamage.Add(collision.gameObject);
+                ListObjectSentDamage.Add(gameObjectCanSent);
             }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    protected void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(tagTakeDamage) && isSent)
         {
-            foreach (GameObject gameObject in ListUnsentDamage)
+            if (CheckObjectInList(collision.gameObject) > -1)
             {
-                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
-                {
-                    ListUnsentDamage.Remove(gameObject);
-                    ListIdSentDamage.Remove(gameObject.GetInstanceID());
-                    break;
-                }
+                ListObjectSentDamage.RemoveAt(CheckObjectInList(collision.gameObject));
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(tagTakeDamage) && isSent)
         {
-            foreach (GameObject gameObject in ListUnsentDamage)
+            if (CheckObjectInList(collision.gameObject) > -1)
             {
-                if (gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
-                {
-                    ListUnsentDamage.Remove(gameObject);
-                    ListIdSentDamage.Remove(gameObject.GetInstanceID());
-                    break;
-                }
+                ListObjectSentDamage.RemoveAt(CheckObjectInList(collision.gameObject));
             }
         }
     }
@@ -103,41 +90,44 @@ public class SwordSendDamage : SendDamageMultipleTarget
 
         if (!isSent)
         {
-
-            foreach (GameObject gameObject in ListUnsentDamage)
+            foreach (GameObjectCanSent gameObject in ListObjectSentDamage)
             {
-                findInList = false;
-
-                foreach (int id in ListIdSentDamage)
-                {
-                    if (id == gameObject.GetInstanceID())
-                    {
-                        findInList = true;
-                        break;
-                    }
-                }
-
-                if (!findInList)
-                {
-                    SendDamage(gameObject);
-                    ListIdSentDamage.Add(gameObject.GetInstanceID());
-                }
+                SendDamage(gameObject);
             }
         }
     }
 
-    private void SendDamage(GameObject gameObject)
+    private void SendDamage(GameObjectCanSent gameObjectCanSent)
     {
-        life = gameObject.GetComponent<Life>();
-        lifeWithRevival = gameObject.GetComponent<LifeWithRevival>();
+        if (!gameObjectCanSent.isSent)
+        {
+            life = gameObjectCanSent.obj.GetComponent<Life>();
+            lifeWithRevival = gameObjectCanSent.obj.GetComponent<LifeWithRevival>();
 
-        if (life != null)
-        {
-            life.TakeDamage(damage);
+            if (life != null)
+            {
+                life.TakeDamage(damage);
+                gameObjectCanSent.isSent = true;
+            }
+            else if (lifeWithRevival != null)
+            {
+                lifeWithRevival.TakeDamage(damage);
+                gameObjectCanSent.isSent = true;
+            }
         }
-        else if (lifeWithRevival != null)
+        
+    }
+
+    private int CheckObjectInList(GameObject obj)
+    {
+        for (int i = 0; i < ListObjectSentDamage.Count; i++)
         {
-            lifeWithRevival.TakeDamage(damage);
+            if(ListObjectSentDamage[i].obj.GetInstanceID() == obj.GetInstanceID())
+            {
+                return i;
+            }
         }
+
+        return -1;
     }
 }
