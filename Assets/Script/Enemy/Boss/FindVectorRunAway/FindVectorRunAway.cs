@@ -80,7 +80,6 @@ public class FindVectorRunAway : MonoBehaviour
     private void UpdateMoveInput()
     {
         maxDistance = Mathf.Max(upDistance, downDistance, leftDistance, rightDistance);
-
         if (upDistance == maxDistance)
         {
             moveInput = vectorUp;
@@ -97,5 +96,7 @@ public class FindVectorRunAway : MonoBehaviour
         {
             moveInput = vectorRight;
         }
+
+        moveInput = new Vector3(moveInput.x, moveInput.y, 0f);
     }
 }

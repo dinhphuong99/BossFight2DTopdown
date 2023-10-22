@@ -18,10 +18,21 @@ public class ChaseBehaviour : MonoBehaviour
         queueBehavier = chaseSkill.GetComponent<QueueBehavier>();
     }
 
+    private void OnEnable()
+    {
+        chaseChild.SetActive(true);
+        chaseSkill.SetActive(true);
+        foreach (GameObject obj in chaseSkillChildrens)
+        {
+            obj.SetActive(false);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         chaseSkill.SetActive(true);
+        queueBehavier.enabled = true;
         if (PlayerPrefs.GetInt("castSkill") <= 0)
         {
             if (detectionColliderMeleSkill.isTouch)
